@@ -22,22 +22,20 @@ export const Education = () => {
   const educationData = [
     {
       id: 1,
-      degree: "BSC (Hons) in Computer Science - UGC (Reading)",
+      degree: "BSC  in Management Information System - (UGC Approved)",
       institution: "NSBM Green University - Sri Lanka",
       period: "Current",
       status: "Current GPA: 3.61",
-      description: "Pursuing Bachelor's degree in Computer Science with focus on software development, algorithms, and modern web technologies.",
-      achievements: ["Dean's List", "Programming Excellence Award", "Active in Tech Society"],
+      description: "Pursuing Bachelor's degree in Information system with focus on software development, cloud solutions, and modern web technologies.",
       direction: "left"
     },
     {
       id: 2,
       degree: "G.C.E. O/L and A/L Examination",
-      institution: "St. Thomas' College - Matale, Sri Lanka",
-      period: "2012 - 2020",
-      status: "Physical Science Stream (Result - CSS)",
-      description: "Completed Advanced Level education in Physical Science stream with excellent results in Chemistry, Physics, and Mathematics.",
-      achievements: ["Science Society Member", "Mathematics Olympiad Participant", "Academic Excellence"],
+      institution: "St.Anthony's College - Kandy, Sri Lanka",
+      period: "2007 - 2020",
+      status: "Physical Science Stream (Result - SSS)",
+      description: "Completed Advanced Level education in Physical Science stream with Good results in Chemistry, Physics, and Biology.",
       direction: "right"
     }
   ];
@@ -53,7 +51,7 @@ export const Education = () => {
     >
       <motion.div className="education-header" variants={fadeInUp} initial="initial" whileInView="animate" viewport={{ once: true }}>
         <h2>Educational Journey</h2>
-        <p>Building knowledge through continuous learning and academic excellence</p>
+        <p>Developing skills through continuous growth, education, and academic achievement</p>
       </motion.div>
 
       <div className="education-timeline">
@@ -92,15 +90,6 @@ export const Education = () => {
               </div>
               
               <p className="education-description">{education.description}</p>
-              
-              <div className="achievements">
-                <h5>Key Achievements:</h5>
-                <ul>
-                  {education.achievements.map((achievement, idx) => (
-                    <li key={idx}>{achievement}</li>
-                  ))}
-                </ul>
-              </div>
             </motion.div>
           </motion.div>
         ))}

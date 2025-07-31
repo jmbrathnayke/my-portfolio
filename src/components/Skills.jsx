@@ -20,18 +20,21 @@ const progressVariants = {
 
 export const Skills = () => {
   const technicalSkills = [
-    { name: "React.js", level: 90, icon: "⚛️" },
-    { name: "JavaScript", level: 85, icon: "🟨" },
-    { name: "Node.js", level: 80, icon: "🟢" },
-    { name: "Python", level: 75, icon: "🐍" },
-    { name: "MongoDB", level: 70, icon: "🍃" },
+    { name: "React.js", level: 75, icon: "⚛️" },
+    { name: "JavaScript", level: 75, icon: "｡🇯‌🇸‌" },
+    { name: "Html", level: 90, icon: "</>" },
+    { name: "C", level: 90, icon: "©" },
+    { name: "Java", level: 70, icon: "♨️" },
     { name: "SQL", level: 85, icon: "🗄️" },
     { name: "Git/GitHub", level: 88, icon: "📱" },
     { name: "CSS/SCSS", level: 82, icon: "🎨" },
-    { name: "Next.js", level: 78, icon: "▲" },
-    { name: "TypeScript", level: 73, icon: "🔷" },
-    { name: "Docker", level: 65, icon: "🐳" },
-    { name: "AWS", level: 60, icon: "☁️" }
+    { name: "Spring Boot", level: 78, icon: "🟢" },
+    { name: "Flutter(dart)", level: 73, icon: "🔷" },
+    { name: "Firebase", level: 65, icon: "🔥" },
+    { name: "PostmanAPI", level: 70, icon: "🚀" },
+    { name: "Azure(currently learning)", level: 20, icon: "☁️" },
+    { name: "vscode", level: 80, icon: "🖥️" },
+    { name: "Intelij", level: 80, icon: "🖥️" },
   ];
 
   const softSkills = [
@@ -124,10 +127,10 @@ export const Skills = () => {
         >
           <div className="skills-section-header">
             <h3>
-              <span className="section-icon">🎭</span>
+              <span className="section-icon">💡</span>
               Soft Skills
             </h3>
-            <p>Personal qualities and interpersonal abilities</p>
+            <p>Personal qualities and interpersonal skills</p>
           </div>
 
           <div className="soft-skills-grid">

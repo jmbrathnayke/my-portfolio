@@ -134,7 +134,8 @@ export const About = () => {
             />
           </motion.div>
 
-          <br /><br />
+          <br /><br /><br />
+          <br /><br /><br />
           <motion.div
             className="floating-card"
             animate={{ y: [0, -10, 0], rotate: [0, 2, 0] }}

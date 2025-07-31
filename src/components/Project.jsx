@@ -106,7 +106,7 @@ export const Projects = () => {
           </div>
           <div className="project-links">
             <motion.a
-              href="https://github.com/jmbrathnayke/social-media-dashboard"
+              href="https://github.com/jmbrathnayke/Waste-Management-System"
               target="_blank"
               rel="noopener noreferrer"
               className="github-link"
@@ -134,19 +134,20 @@ export const Projects = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           />
-          <h3>Productivity Timer</h3>
+          <h3>Inventory Management system</h3>
           <p>
-            A sleek productivity timer application with customizable work
-            sessions, statistics tracking, and dark mode support.
+            Using Flask API and React frontend, a complete inventory management system was created that includes low stock alerts, purchase/sales management, real-time stock tracking, a business intelligence dashboard, and a modular architecture that supports a fully responsive user interface.
           </p>
           <div className="project-tech">
             <span>React</span>
-            <span>TypeScript</span>
+            <span>Flask</span>
             <span>TailwindCSS</span>
+            <span>Sql Server</span>
+            <span>Chart.js</span>
           </div>
           <div className="project-links">
             <motion.a
-              href="https://github.com/jmbrathnayke/productivity-timer"
+              href="https://github.com/jmbrathnayke/InventoryManagementSystem"
               target="_blank"
               rel="noopener noreferrer"
               className="github-link"
