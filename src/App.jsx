@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { Navbar } from "./components/Navbar";
+import { About } from "./components/About";
+import { Projects } from "./components/Project";
+import { Education } from "./components/Education";
+import { Skills } from "./components/Skills";
+import { Contact } from "./components/Contact";
+import { useEffect, useState } from "react";
+import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className={`app ${isLoaded ? "loaded" : ""}`}>
+      <Navbar />
+
+      <About />
+      <Projects />
+      <Education />
+      <Skills />
+      <Contact />
+
+      <motion.footer
+        className="footer"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <p> &copy; 2025 PedroTech. All rights reserved.</p>
+      </motion.footer>
+    </div>
+  );
 }
 
-export default App
+export default App;
