@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import myImage from "../assets/my-image.jpg";
+import resumePDF from "../assets/Manujaya rathnayake resume.pdf";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -18,6 +19,16 @@ const staggerContainer = {
 };
 
 export const About = () => {
+  const handleDownloadCV = () => {
+    // Create a download link with cache-busting parameter
+    const link = document.createElement('a');
+    link.href = `${resumePDF}?v=${Date.now()}`;
+    link.download = 'Manujaya_Rathnayake_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <motion.section
       id="home"
@@ -63,15 +74,14 @@ export const About = () => {
               {" "}
               View My Work
             </motion.a>
-            <motion.a
-              href="/Manujaya_Rathnayake_Resume.pdf"
+            <motion.button
               className="cta-secondary"
-              download="Manujaya_Rathnayake_Resume.pdf"
+              onClick={handleDownloadCV}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Download CV
-            </motion.a>
+            </motion.button>
           </motion.div>
           <motion.div className="social-links" variants={staggerContainer}>
             <motion.a href="https://github.com" target="_blank">

@@ -25,7 +25,7 @@ export const Education = () => {
       degree: "BSC  in Management Information System - (UGC Approved)",
       institution: "NSBM Green University - Sri Lanka",
       period: "Current",
-      status: "Current GPA: 3.61",
+      status: "Current GPA: 3.21",
       description: "Pursuing Bachelor's degree in Information system with focus on software development, cloud solutions, and modern web technologies.",
       direction: "left"
     },

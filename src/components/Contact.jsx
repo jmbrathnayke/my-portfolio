@@ -54,7 +54,8 @@ export const Contact = () => {
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
-          name: formData.name,
+          from_name: formData.name,
+          to_name: "Manujaya",
           email: formData.email,
           subject: formData.subject,
           message: formData.message,
@@ -76,6 +77,7 @@ export const Contact = () => {
         message: "",
       });
     } catch (error) {
+      console.error('EmailJS Error:', error);
       setFormStatus({
         submitting: false,
         success: false,
