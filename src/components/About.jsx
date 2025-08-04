@@ -56,7 +56,7 @@ export const About = () => {
           </motion.h1>
           <motion.h2 className="hero-subtitle" variants={fadeInUp}>
             {" "}
-            Aspiring Software Engineer & Cloud Enthusiast
+            Aspiring Software Engineer 
           </motion.h2>
           <motion.p className="hero-description" variants={fadeInUp}>
             I am third year Management Information Systems student with a strong interest for software engineering and developing scalable
