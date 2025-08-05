@@ -34,8 +34,8 @@ export const Education = () => {
       degree: "G.C.E. O/L and A/L Examination",
       institution: "St.Anthony's College - Kandy, Sri Lanka",
       period: "2007 - 2020",
-      status: "Physical Science Stream (Result - SSS)",
-      description: "Completed Advanced Level education in Physical Science stream with Good results in Chemistry, Physics, and Biology.",
+      status: "Science Stream (Result - SSS)",
+      description: "Completed Advanced Level education in Science stream with Good results in Chemistry, Physics, and Biology.",
       direction: "right"
     }
   ];

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -19,23 +20,31 @@ const progressVariants = {
 };
 
 export const Skills = () => {
+  const [activeFilter, setActiveFilter] = useState('All');
+
   const technicalSkills = [
-    { name: "React.js", level: 75, icon: "⚛️" },
-    { name: "JavaScript", level: 75, icon: "｡🇯‌🇸‌" },
-    { name: "Html", level: 90, icon: "</>" },
-    { name: "C", level: 90, icon: "©" },
-    { name: "Java", level: 70, icon: "♨️" },
-    { name: "SQL", level: 85, icon: "🗄️" },
-    { name: "Git/GitHub", level: 88, icon: "📱" },
-    { name: "CSS/SCSS", level: 82, icon: "🎨" },
-    { name: "Spring Boot", level: 78, icon: "🟢" },
-    { name: "Flutter(dart)", level: 73, icon: "🔷" },
-    { name: "Firebase", level: 65, icon: "🔥" },
-    { name: "PostmanAPI", level: 70, icon: "🚀" },
-    { name: "Azure(currently learning)", level: 20, icon: "☁️" },
-    { name: "vscode", level: 80, icon: "🖥️" },
-    { name: "Intelij", level: 80, icon: "🖥️" },
+    { name: "React.js", level: 75, icon: "⚛️", category: "Frontend" },
+    { name: "JavaScript", level: 75, icon: "｡🇯‌🇸‌", category: "Language" },
+    { name: "Html", level: 90, icon: "</>", category: "Frontend" },
+    { name: "C", level: 90, icon: "©", category: "Language" },
+    { name: "Java", level: 70, icon: "♨️", category: "Language" },
+    { name: "SQL", level: 85, icon: "🗄️", category: "Database" },
+    { name: "Git/GitHub", level: 88, icon: "📱", category: "Tools" },
+    { name: "CSS/SCSS", level: 82, icon: "🎨", category: "Frontend" },
+    { name: "Spring Boot", level: 78, icon: "🟢", category: "Backend" },
+    { name: "Flutter(dart)", level: 73, icon: "🔷", category: "Mobile" },
+    { name: "Firebase", level: 65, icon: "🔥", category: "Backend" },
+    { name: "PostmanAPI", level: 70, icon: "🚀", category: "Tools" },
+    { name: "Azure(currently learning)", level: 20, icon: "☁️", category: "Cloud" },
+    { name: "vscode", level: 80, icon: "🖥️", category: "Tools" },
+    { name: "Intelij", level: 80, icon: "🖥️", category: "Tools" },
   ];
+
+  const skillCategories = ['All', 'Language', 'Frontend', 'Backend', 'Mobile', 'Database', 'Tools', 'Cloud'];
+
+  const filteredSkills = activeFilter === 'All' 
+    ? technicalSkills 
+    : technicalSkills.filter(skill => skill.category === activeFilter);
 
   const softSkills = [
     { name: "Problem Solving", description: "Analytical thinking and creative solutions", icon: "🧩" },
@@ -79,8 +88,24 @@ export const Skills = () => {
             <p>Programming languages, frameworks, and tools</p>
           </div>
 
+          {/* Filter Buttons */}
+          <div className="skills-filter">
+            {skillCategories.map((category) => (
+              <motion.button
+                key={category}
+                className={`filter-btn ${activeFilter === category ? 'active' : ''}`}
+                onClick={() => setActiveFilter(category)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                {category}
+              </motion.button>
+            ))}
+          </div>
+
           <div className="technical-grid">
-            {technicalSkills.map((skill, index) => (
+            {filteredSkills.map((skill, index) => (
               <motion.div
                 key={skill.name}
                 className="tech-skill-card"
@@ -172,7 +197,7 @@ export const Skills = () => {
       >
         <div className="summary-stats">
           <div className="stat-item">
-            <span className="stat-number">12+</span>
+            <span className="stat-number">{technicalSkills.length}+</span>
             <span className="stat-label">Technical Skills</span>
           </div>
           <div className="stat-item">

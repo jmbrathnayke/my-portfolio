@@ -132,8 +132,8 @@ export const Contact = () => {
                 <i className="fas fa-phone"></i>
               </div>
               <div className="contact-text">
-                <a href="tel:+94767191265">+94 767191265</a><br />
-                 <a href="tel:+94714790447">+94 714790447</a>
+                <a href="tel:+94767191265">+94 76 7191 265</a><br />
+                 <a href="tel:+94714790447">+94 71 4790 447</a>
               </div>
             </motion.div>
 

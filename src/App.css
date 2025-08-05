@@ -1789,6 +1789,43 @@ body {
   font-size: 1rem;
 }
 
+/* Skills Filter */
+.skills-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.filter-btn {
+  background: rgba(30, 41, 59, 0.4);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  color: var(--light-text);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background: rgba(97, 244, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: rgba(97, 244, 255, 0.1);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(97, 244, 255, 0.2);
+}
+
 /* Technical Skills */
 .technical-grid {
   display: grid;
@@ -1846,7 +1883,7 @@ body {
 
 .skill-progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+  background-color: gainsboro;
   border-radius: 8px;
   position: relative;
   box-shadow: 0 0 8px rgba(97, 244, 255, 0.2);
@@ -1998,6 +2035,16 @@ body {
 
   .skills-section-header h3 {
     font-size: 1.6rem;
+  }
+
+  .skills-filter {
+    gap: 0.3rem;
+    padding: 0 0.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
   }
 
   .technical-grid,
