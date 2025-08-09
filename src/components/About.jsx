@@ -84,16 +84,16 @@ export const About = () => {
             </motion.button>
           </motion.div>
           <motion.div className="social-links" variants={staggerContainer}>
-            <motion.a href="https://github.com" target="_blank">
+            <motion.a href="https://github.com/jmbrathnayke" target="_blank">
               <i className="fab fa-github"> </i>
             </motion.a>
-            <motion.a href="https://linkedin.com" target="_blank">
+            <motion.a href="https://www.linkedin.com/in/manujaya-rathnayake-9549a727a/" target="_blank">
               <i className="fab fa-linkedin"> </i>
             </motion.a>
-            <motion.a href="https://facebook.com" target="_blank">
+            <motion.a href="https://www.facebook.com/share/19uJjGsgX5/" target="_blank">
               <i className="fab fa-facebook"> </i>
             </motion.a>
-            <motion.a href="https://medium.com" target="_blank">
+            <motion.a href="https://medium.com/@janithrathnayake01" target="_blank">
               <i className="fab fa-medium"> </i>
             </motion.a>
           </motion.div>
