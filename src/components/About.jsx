@@ -20,10 +20,13 @@ const staggerContainer = {
 
 export const About = () => {
   const handleDownloadCV = () => {
-    // Create a download link with cache-busting parameter
+    // Enhanced cache-busting with multiple parameters and force refresh
     const link = document.createElement('a');
-    link.href = `${resumePDF}?v=${Date.now()}`;
+    const cacheBuster = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    link.href = `${resumePDF}?v=${cacheBuster}&nocache=true&_=${Date.now()}`;
     link.download = 'Manujaya_Rathnayake_Resume.pdf';
+    link.target = '_blank'; // Open in new tab to bypass cache
+    link.rel = 'noopener noreferrer';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
