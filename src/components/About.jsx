@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import myImage from "../assets/my-image.jpg";
-import resumePDF from "../assets/Manujaya rathnayake resume.pdf";
+import resumePDF from "../assets/Manujaya_Rathnayake_Resume.pdf";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -19,17 +19,36 @@ const staggerContainer = {
 };
 
 export const About = () => {
-  const handleDownloadCV = () => {
-    // Enhanced cache-busting with multiple parameters and force refresh
-    const link = document.createElement('a');
-    const cacheBuster = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    link.href = `${resumePDF}?v=${cacheBuster}&nocache=true&_=${Date.now()}`;
-    link.download = 'Manujaya_Rathnayake_Resume.pdf';
-    link.target = '_blank'; // Open in new tab to bypass cache
-    link.rel = 'noopener noreferrer';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleDownloadCV = async () => {
+    try {
+      // Enhanced cache-busting with multiple parameters and force refresh
+      const cacheBuster = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+      const downloadUrl = `${resumePDF}?v=${cacheBuster}&nocache=true&_=${Date.now()}`;
+      
+      // First, verify the file exists
+      const response = await fetch(downloadUrl, { method: 'HEAD' });
+      if (!response.ok) {
+        throw new Error('Resume file not found');
+      }
+      
+      // Create download link
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = 'Manujaya_Rathnayake_Resume.pdf';
+      link.target = '_blank'; // Open in new tab to bypass cache
+      link.rel = 'noopener noreferrer';
+      
+      // Trigger download
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      console.log('Resume download initiated successfully');
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+      // Fallback: try direct navigation
+      window.open(resumePDF, '_blank');
+    }
   };
 
   return (
