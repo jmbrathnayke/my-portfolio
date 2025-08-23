@@ -6,49 +6,67 @@ import App from './App.jsx'
 // Force complete cache bust - timestamp: 1724434800
 console.log('Portfolio loaded - Cache bust active:', Date.now());
 
-// Clear service worker and caches completely
-if ('serviceWorker' in navigator) {
-  console.log('SW: Starting complete service worker cleanup...');
+// Check if service worker cleanup is needed (only run once)
+if ('serviceWorker' in navigator && !sessionStorage.getItem('sw-cleanup-done')) {
+  console.log('SW: Checking for service worker cleanup...');
   
-  // First, unregister all existing service workers
-  navigator.serviceWorker.getRegistrations().then(function(registrations) {
-    console.log('SW: Found', registrations.length, 'service worker registrations');
+  // Mark cleanup as attempted to prevent loops
+  sessionStorage.setItem('sw-cleanup-attempted', 'true');
+  
+  // Check if there are any service workers or caches to clean
+  Promise.all([
+    navigator.serviceWorker.getRegistrations(),
+    caches.keys()
+  ]).then(function([registrations, cacheNames]) {
+    const hasServiceWorkers = registrations.length > 0;
+    const hasCaches = cacheNames.length > 0;
     
-    const unregisterPromises = registrations.map(function(registration) {
-      console.log('SW: Unregistering service worker:', registration.scope);
-      return registration.unregister();
-    });
+    console.log('SW: Found', registrations.length, 'service workers and', cacheNames.length, 'caches');
     
-    return Promise.all(unregisterPromises);
+    if (hasServiceWorkers || hasCaches) {
+      console.log('SW: Cleanup needed - starting cleanup process...');
+      
+      // Unregister service workers
+      const unregisterPromises = registrations.map(function(registration) {
+        console.log('SW: Unregistering service worker:', registration.scope);
+        return registration.unregister();
+      });
+      
+      // Clear caches
+      const deletePromises = cacheNames.map(function(cacheName) {
+        console.log('SW: Clearing cache:', cacheName);
+        return caches.delete(cacheName);
+      });
+      
+      return Promise.all([...unregisterPromises, ...deletePromises]);
+    } else {
+      console.log('SW: No cleanup needed - portfolio is clean!');
+      // Mark as permanently done
+      sessionStorage.setItem('sw-cleanup-done', 'true');
+      return Promise.resolve([]);
+    }
   }).then(function(results) {
-    console.log('SW: All service workers unregistered:', results);
-    
-    // Clear all caches
-    return caches.keys();
-  }).then(function(cacheNames) {
-    console.log('SW: Found', cacheNames.length, 'caches to clear');
-    
-    const deletePromises = cacheNames.map(function(cacheName) {
-      console.log('SW: Clearing cache:', cacheName);
-      return caches.delete(cacheName);
-    });
-    
-    return Promise.all(deletePromises);
-  }).then(function(results) {
-    console.log('SW: All caches cleared:', results);
-    console.log('SW: Service worker cleanup complete - page will reload automatically');
-    
-    // Force a hard reload to ensure everything is fresh
-    setTimeout(function() {
-      window.location.reload(true);
-    }, 1000);
+    if (results.length > 0) {
+      console.log('SW: Cleanup completed:', results);
+      console.log('SW: Reloading page to apply changes...');
+      
+      // Mark cleanup as done before reload
+      sessionStorage.setItem('sw-cleanup-done', 'true');
+      
+      // Reload only if we actually cleaned something
+      setTimeout(function() {
+        window.location.reload(true);
+      }, 1000);
+    }
   }).catch(function(error) {
     console.error('SW: Cleanup failed:', error);
-    // If cleanup fails, still reload to try fresh
-    setTimeout(function() {
-      window.location.reload(true);
-    }, 2000);
+    // Mark as done even if failed to prevent loops
+    sessionStorage.setItem('sw-cleanup-done', 'true');
   });
+} else if (sessionStorage.getItem('sw-cleanup-done')) {
+  console.log('SW: Cleanup already completed - portfolio running clean!');
+} else {
+  console.log('SW: Service workers not supported or cleanup not needed');
 }
 
 createRoot(document.getElementById('root')).render(
