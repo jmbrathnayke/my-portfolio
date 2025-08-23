@@ -1,6 +1,13 @@
-# React + Vite
+# Manujaya Rathnayake - Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern React portfolio website built with Vite, featuring responsive design and smooth animations.
+
+## Features
+- Responsive portfolio design
+- Framer Motion animations
+- Contact form with EmailJS
+- Skills filtering
+- Project showcase with GitHub integration
 
 Currently, two official plugins are available:
 

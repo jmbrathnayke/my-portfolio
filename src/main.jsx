@@ -3,18 +3,8 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
-// Register service worker for cache management
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then((registration) => {
-        console.log('SW registered: ', registration);
-      })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
-      });
-  });
-}
+// Force complete cache bust - timestamp: 1724434800
+console.log('Portfolio loaded - Cache bust active:', Date.now());
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
