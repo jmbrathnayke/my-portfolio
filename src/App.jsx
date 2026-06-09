@@ -8,6 +8,7 @@ import { Contact } from "./components/Contact";
 import { useEffect, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
+import { ThreeArchitecture } from "./components/ThreeArchitecture";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <div className={`app ${isLoaded ? "loaded" : ""}`}>
+      <ThreeArchitecture />
       <Navbar />
 
       <About />

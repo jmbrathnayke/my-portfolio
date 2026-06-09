@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import myLogo from "../assets/my-image.jpg";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -29,7 +28,7 @@ export const Navbar = () => {
         whileTap={{ scale: 0.95 }}
         
       >
-        M<img src={myLogo} alt="My Logo" />R
+        MR.DEV
       </motion.div>
 
       <motion.ul

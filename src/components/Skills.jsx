@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import nextjsImage from "../assets/nextjs.png";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -13,31 +14,31 @@ const skillCardVariants = {
   transition: { duration: 0.6 },
 };
 
-const progressVariants = {
-  initial: { width: 0 },
-  animate: { width: "var(--progress-width)" },
-  transition: { duration: 1.5, ease: "easeOut" },
-};
-
 export const Skills = () => {
   const [activeFilter, setActiveFilter] = useState('All');
 
   const technicalSkills = [
-    { name: "React.js", level: 75, icon: "⚛️", category: "Frontend" },
-    { name: "JavaScript", level: 75, icon: "｡🇯‌🇸‌", category: "Language" },
-    { name: "Html", level: 90, icon: "</>", category: "Frontend" },
-    { name: "C", level: 90, icon: "©", category: "Language" },
-    { name: "Java", level: 70, icon: "♨️", category: "Language" },
-    { name: "SQL", level: 85, icon: "🗄️", category: "Database" },
-    { name: "Git/GitHub", level: 88, icon: "📱", category: "Tools" },
-    { name: "CSS/SCSS", level: 82, icon: "🎨", category: "Frontend" },
-    { name: "Spring Boot", level: 78, icon: "🟢", category: "Backend" },
-    { name: "Flutter(dart)", level: 73, icon: "🔷", category: "Mobile" },
-    { name: "Firebase", level: 65, icon: "🔥", category: "Backend" },
-    { name: "PostmanAPI", level: 70, icon: "🚀", category: "Tools" },
-    { name: "Azure(currently learning)", level: 20, icon: "☁️", category: "Cloud" },
-    { name: "vscode", level: 80, icon: "🖥️", category: "Tools" },
-    { name: "Intelij", level: 80, icon: "🖥️", category: "Tools" },
+    { name: "React.js", icon: "fab fa-react", category: "Frontend" },
+    { name: "Next.js", icon: nextjsImage, isImage: true, category: "Frontend" },
+    { name: "JavaScript", icon: "fab fa-js", category: "Language" },
+    { name: "HTML", icon: "fab fa-html5", category: "Frontend" },
+    { name: "C", icon: "fas fa-code", category: "Language" },
+    { name: "Java", icon: "fab fa-java", category: "Language" },
+    { name: "SQL", icon: "fas fa-database", category: "Database" },
+    { name: "Neon", icon: "fas fa-database", category: "Database" },
+    { name: "Git/GitHub", icon: "fab fa-git-alt", category: "Tools" },
+    { name: "CSS/SCSS", icon: "fab fa-css3-alt", category: "Frontend" },
+    { name: "Spring Boot", icon: "fas fa-leaf", category: "Backend" },
+    { name: "Node.js", icon: "fab fa-node-js", category: "Backend" },
+    { name: "Express.js", icon: "fas fa-server", category: "Backend" },
+    { name: "Supabase", icon: "fas fa-bolt", category: "Backend" },
+    { name: "Flutter(dart)", icon: "fas fa-mobile-alt", category: "Mobile" },
+    { name: "Firebase", icon: "fas fa-fire", category: "Backend" },
+    { name: "PostmanAPI", icon: "fas fa-paper-plane", category: "Tools" },
+    { name: "AWS", icon: "fab fa-aws", category: "Cloud" },
+    { name: "Azure", icon: "fab fa-microsoft", category: "Cloud" },
+    { name: "VS Code", icon: "fas fa-laptop-code", category: "Tools" },
+    { name: "Intellij", icon: "fas fa-terminal", category: "Tools" },
   ];
 
   const skillCategories = ['All', 'Language', 'Frontend', 'Backend', 'Mobile', 'Database', 'Tools', 'Cloud'];
@@ -47,14 +48,14 @@ export const Skills = () => {
     : technicalSkills.filter(skill => skill.category === activeFilter);
 
   const softSkills = [
-    { name: "Problem Solving", description: "Analytical thinking and creative solutions", icon: "🧩" },
-    { name: "Team Collaboration", description: "Effective communication and teamwork", icon: "🤝" },
-    { name: "Leadership", description: "Project management and team guidance", icon: "👑" },
-    { name: "Adaptability", description: "Quick learning and flexibility", icon: "🔄" },
-    { name: "Critical Thinking", description: "Strategic analysis and decision making", icon: "🎯" },
-    { name: "Time Management", description: "Efficient project planning and execution", icon: "⏰" },
-    { name: "Communication", description: "Clear technical and non-technical communication", icon: "💬" },
-    { name: "Creativity", description: "Innovative approaches and design thinking", icon: "💡" }
+    { name: "Problem Solving", icon: "fas fa-puzzle-piece" },
+    { name: "Team Collaboration", icon: "fas fa-users" },
+    { name: "Leadership", icon: "fas fa-crown" },
+    { name: "Adaptability", icon: "fas fa-sync-alt" },
+    { name: "Critical Thinking", icon: "fas fa-bullseye" },
+    { name: "Time Management", icon: "fas fa-clock" },
+    { name: "Communication", icon: "fas fa-comments" },
+    { name: "Creativity", icon: "fas fa-lightbulb" }
   ];
 
   return (
@@ -75,12 +76,13 @@ export const Skills = () => {
         {/* Technical Skills Section */}
         <motion.div
           className="technical-skills"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
+          style={{ width: '100%' }}
         >
-          <div className="skills-section-header">
+          <div className="skills-section-header" style={{ textAlign: 'center' }}>
             <h3>
               <span className="section-icon">💻</span>
               Technical Skills
@@ -104,83 +106,77 @@ export const Skills = () => {
             ))}
           </div>
 
-          <div className="technical-grid">
-            {filteredSkills.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                className="tech-skill-card"
-                variants={skillCardVariants}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ 
-                  y: -5,
-                  scale: 1.02,
-                  boxShadow: "0 20px 40px rgba(97, 244, 255, 0.15)",
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <div className="skill-icon">{skill.icon}</div>
-                <div className="skill-info">
-                  <h4>{skill.name}</h4>
-                  <div className="skill-progress-container">
-                    <motion.div
-                      className="skill-progress-bar"
-                      style={{ "--progress-width": `${skill.level}%` }}
-                      variants={progressVariants}
-                      initial="initial"
-                      whileInView="animate"
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 + 0.5 }}
-                    />
-                    <span className="skill-percentage">{skill.level}%</span>
+          <motion.div className="technical-grid" layout>
+            <AnimatePresence mode="popLayout">
+              {filteredSkills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  className="tech-skill-card"
+                  variants={skillCardVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3 }}
+                  layout
+                >
+                  <div className="skill-icon-wrapper">
+                    {skill.isImage ? (
+                      <img 
+                        src={skill.icon} 
+                        alt={skill.name} 
+                        style={{ 
+                          width: '2.5rem', 
+                          height: '2.5rem', 
+                          borderRadius: '50%',
+                          objectFit: 'contain'
+                        }} 
+                      />
+                    ) : (
+                      <i className={skill.icon}></i>
+                    )}
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                  <h4>{skill.name}</h4>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
         </motion.div>
 
-        {/* Soft Skills Section */}
+        {/* Soft Skills Section below */}
         <motion.div
-          className="soft-skills"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          className="soft-skills-simple"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          style={{ width: '100%', marginTop: '4rem' }}
         >
-          <div className="skills-section-header">
+          <div className="skills-section-header" style={{ textAlign: 'center' }}>
             <h3>
               <span className="section-icon">💡</span>
               Soft Skills
             </h3>
-            <p>Personal qualities and interpersonal skills</p>
+            <p>Personal qualities and interpersonal strengths</p>
           </div>
 
-          <div className="soft-skills-grid">
+          <div className="soft-skills-simple-list">
             {softSkills.map((skill, index) => (
               <motion.div
                 key={skill.name}
-                className="soft-skill-card"
-                variants={skillCardVariants}
-                initial="initial"
-                whileInView="animate"
+                className="soft-skill-tag"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
+                transition={{ delay: index * 0.05 }}
                 whileHover={{ 
                   scale: 1.05,
-                  rotateY: 5,
-                  boxShadow: "0 25px 50px rgba(89, 0, 141, 0.2)",
-                  transition: { duration: 0.3 }
+                  y: -2,
+                  boxShadow: "0 5px 15px rgba(0, 0, 0, 0.05)"
                 }}
               >
-                <div className="soft-skill-icon">{skill.icon}</div>
-                <div className="soft-skill-content">
-                  <h4>{skill.name}</h4>
-                  <p>{skill.description}</p>
-                </div>
-                <div className="skill-glow"></div>
+                <i className={skill.icon}></i>
+                <span>{skill.name}</span>
               </motion.div>
             ))}
           </div>
@@ -193,7 +189,7 @@ export const Skills = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.5 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
       >
         <div className="summary-stats">
           <div className="stat-item">
