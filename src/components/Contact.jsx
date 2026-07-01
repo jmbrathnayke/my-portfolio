@@ -182,6 +182,17 @@ export const Contact = () => {
                 </a>
               </div>
             </motion.div>
+
+            <motion.div className="contact-item contact-item-upwork" variants={fadeInUp}>
+              <div className="contact-icon">
+                <i className="fab fa-upwork"></i>
+              </div>
+              <div className="contact-text">
+                <a href="https://www.upwork.com/freelancers/~01c59958bc8debe561" target="_blank" rel="noopener noreferrer">
+                  Hire me on Upwork
+                </a>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
 
